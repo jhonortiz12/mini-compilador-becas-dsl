@@ -14,36 +14,41 @@ class DSLInterpreter(BecasParserListener):
 
     def enterLoadInstruction(self, ctx):
         self.filename = ctx.STRING().getText().strip('"')
+        print(f"📂 Cargando archivo CSV: {self.filename}")
         self.data = pd.read_csv(self.filename)
+        print(f"✅ CSV cargado con {len(self.data)} registros")
 
     def enterFilterInstruction(self, ctx):
-        # Obtener STRINGs usando el método correcto
         strings = ctx.getTokens(BecasParser.STRING)
         column = strings[0].getText().strip('"')
         value_token = ctx.value().getText()
         operator = ctx.operator().getText()
 
-        # Convertir valor a numérico si es posible
         if value_token.replace('.', '', 1).isdigit():
             value = float(value_token) if '.' in value_token else int(value_token)
         else:
             value = f'"{value_token.strip("\"")}"'
 
-        # Construir la condición como string para usar en query()
-        condition = f"(self.data['{column}'] {operator} {value})"
+        # CORRECTO: sin usar self.data[...] en query
+        condition = f"({column} {operator} {value})"
+        print(f"🔎 Acumulando filtro: {condition}")
         self.filters.append(condition)
 
     def enterAggregateInstruction(self, ctx):
         func = ctx.aggregateFunc().getText().lower()
         column = ctx.STRING().getText().strip('"')
         self.aggregates.append((func, column))
+        print(f"🧮 Agregación solicitada: {func.upper()} sobre {column}")
 
     def enterPrintInstruction(self, ctx):
+        print("🛠️ Ejecutando instrucción PRINT")
         df = self.data
 
         if self.filters:
             condition = " & ".join(self.filters)
+            print(f"🧪 Aplicando filtros: {condition}")
             df = df.query(condition)
+            print(f"✅ Filtrado: {len(df)} registros encontrados")
 
         for func, col in self.aggregates:
             if func == 'count':
@@ -57,6 +62,7 @@ class DSLInterpreter(BecasParserListener):
         print("\n--- Fin del script ---\n")
 
 def run_script(script_path):
+    print(f"▶️ Ejecutando script: {script_path}")
     input_stream = FileStream(script_path, encoding='utf-8')
     lexer = BecasLexer(input_stream)
     stream = CommonTokenStream(lexer)

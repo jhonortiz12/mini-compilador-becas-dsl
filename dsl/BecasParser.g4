@@ -13,7 +13,7 @@ instruction
 
 loadInstruction: LOAD STRING SEMICOLON;
 
-filterInstruction: FILTER COLUMN STRING operator value (logicalOperator filterInstruction)?;
+filterInstruction: FILTER COLUMN STRING operator value SEMICOLON;
 
 aggregateInstruction: AGGREGATE aggregateFunc COLUMN STRING SEMICOLON;
 
@@ -24,5 +24,3 @@ operator: GT | LT | GE | LE | EQ | NEQ;
 value: STRING | NUMBER;
 
 aggregateFunc: COUNT | SUM | AVERAGE | BETWEEN;
-
-logicalOperator: AND | OR;

@@ -89,14 +89,5 @@ class BecasParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by BecasParser#logicalOperator.
-    def enterLogicalOperator(self, ctx:BecasParser.LogicalOperatorContext):
-        pass
-
-    # Exit a parse tree produced by BecasParser#logicalOperator.
-    def exitLogicalOperator(self, ctx:BecasParser.LogicalOperatorContext):
-        pass
-
-
 
 del BecasParser

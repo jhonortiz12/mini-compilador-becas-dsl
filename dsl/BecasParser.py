@@ -10,25 +10,22 @@ else:
 
 def serializedATN():
     return [
-        4,1,22,63,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
-        6,2,7,7,7,2,8,7,8,2,9,7,9,1,0,4,0,22,8,0,11,0,12,0,23,1,1,1,1,1,
-        1,1,1,3,1,30,8,1,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,
-        3,3,44,8,3,1,4,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,6,1,6,1,7,1,7,1,
-        8,1,8,1,9,1,9,1,9,0,0,10,0,2,4,6,8,10,12,14,16,18,0,4,1,0,12,17,
-        1,0,18,19,1,0,5,8,1,0,10,11,57,0,21,1,0,0,0,2,29,1,0,0,0,4,31,1,
-        0,0,0,6,35,1,0,0,0,8,45,1,0,0,0,10,51,1,0,0,0,12,54,1,0,0,0,14,56,
-        1,0,0,0,16,58,1,0,0,0,18,60,1,0,0,0,20,22,3,2,1,0,21,20,1,0,0,0,
-        22,23,1,0,0,0,23,21,1,0,0,0,23,24,1,0,0,0,24,1,1,0,0,0,25,30,3,4,
-        2,0,26,30,3,6,3,0,27,30,3,8,4,0,28,30,3,10,5,0,29,25,1,0,0,0,29,
-        26,1,0,0,0,29,27,1,0,0,0,29,28,1,0,0,0,30,3,1,0,0,0,31,32,5,1,0,
-        0,32,33,5,18,0,0,33,34,5,21,0,0,34,5,1,0,0,0,35,36,5,2,0,0,36,37,
-        5,3,0,0,37,38,5,18,0,0,38,39,3,12,6,0,39,43,3,14,7,0,40,41,3,18,
-        9,0,41,42,3,6,3,0,42,44,1,0,0,0,43,40,1,0,0,0,43,44,1,0,0,0,44,7,
-        1,0,0,0,45,46,5,4,0,0,46,47,3,16,8,0,47,48,5,3,0,0,48,49,5,18,0,
-        0,49,50,5,21,0,0,50,9,1,0,0,0,51,52,5,9,0,0,52,53,5,21,0,0,53,11,
-        1,0,0,0,54,55,7,0,0,0,55,13,1,0,0,0,56,57,7,1,0,0,57,15,1,0,0,0,
-        58,59,7,2,0,0,59,17,1,0,0,0,60,61,7,3,0,0,61,19,1,0,0,0,3,23,29,
-        43
+        4,1,22,56,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,2,8,7,8,1,0,4,0,20,8,0,11,0,12,0,21,1,1,1,1,1,1,1,1,3,
+        1,28,8,1,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,
+        1,4,1,4,1,4,1,5,1,5,1,5,1,6,1,6,1,7,1,7,1,8,1,8,1,8,0,0,9,0,2,4,
+        6,8,10,12,14,16,0,3,1,0,12,17,1,0,18,19,1,0,5,8,50,0,19,1,0,0,0,
+        2,27,1,0,0,0,4,29,1,0,0,0,6,33,1,0,0,0,8,40,1,0,0,0,10,46,1,0,0,
+        0,12,49,1,0,0,0,14,51,1,0,0,0,16,53,1,0,0,0,18,20,3,2,1,0,19,18,
+        1,0,0,0,20,21,1,0,0,0,21,19,1,0,0,0,21,22,1,0,0,0,22,1,1,0,0,0,23,
+        28,3,4,2,0,24,28,3,6,3,0,25,28,3,8,4,0,26,28,3,10,5,0,27,23,1,0,
+        0,0,27,24,1,0,0,0,27,25,1,0,0,0,27,26,1,0,0,0,28,3,1,0,0,0,29,30,
+        5,1,0,0,30,31,5,18,0,0,31,32,5,21,0,0,32,5,1,0,0,0,33,34,5,2,0,0,
+        34,35,5,3,0,0,35,36,5,18,0,0,36,37,3,12,6,0,37,38,3,14,7,0,38,39,
+        5,21,0,0,39,7,1,0,0,0,40,41,5,4,0,0,41,42,3,16,8,0,42,43,5,3,0,0,
+        43,44,5,18,0,0,44,45,5,21,0,0,45,9,1,0,0,0,46,47,5,9,0,0,47,48,5,
+        21,0,0,48,11,1,0,0,0,49,50,7,0,0,0,50,13,1,0,0,0,51,52,7,1,0,0,52,
+        15,1,0,0,0,53,54,7,2,0,0,54,17,1,0,0,0,2,21,27
     ]
 
 class BecasParser ( Parser ):
@@ -60,11 +57,10 @@ class BecasParser ( Parser ):
     RULE_operator = 6
     RULE_value = 7
     RULE_aggregateFunc = 8
-    RULE_logicalOperator = 9
 
     ruleNames =  [ "program", "instruction", "loadInstruction", "filterInstruction", 
                    "aggregateInstruction", "printInstruction", "operator", 
-                   "value", "aggregateFunc", "logicalOperator" ]
+                   "value", "aggregateFunc" ]
 
     EOF = Token.EOF
     LOAD=1
@@ -134,13 +130,13 @@ class BecasParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 21 
+            self.state = 19 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 20
+                self.state = 18
                 self.instruction()
-                self.state = 23 
+                self.state = 21 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 534) != 0)):
@@ -197,27 +193,27 @@ class BecasParser ( Parser ):
         localctx = BecasParser.InstructionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_instruction)
         try:
-            self.state = 29
+            self.state = 27
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [1]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 25
+                self.state = 23
                 self.loadInstruction()
                 pass
             elif token in [2]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 26
+                self.state = 24
                 self.filterInstruction()
                 pass
             elif token in [4]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 27
+                self.state = 25
                 self.aggregateInstruction()
                 pass
             elif token in [9]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 28
+                self.state = 26
                 self.printInstruction()
                 pass
             else:
@@ -268,11 +264,11 @@ class BecasParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_loadInstruction)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 31
+            self.state = 29
             self.match(BecasParser.LOAD)
-            self.state = 32
+            self.state = 30
             self.match(BecasParser.STRING)
-            self.state = 33
+            self.state = 31
             self.match(BecasParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -307,13 +303,8 @@ class BecasParser ( Parser ):
             return self.getTypedRuleContext(BecasParser.ValueContext,0)
 
 
-        def logicalOperator(self):
-            return self.getTypedRuleContext(BecasParser.LogicalOperatorContext,0)
-
-
-        def filterInstruction(self):
-            return self.getTypedRuleContext(BecasParser.FilterInstructionContext,0)
-
+        def SEMICOLON(self):
+            return self.getToken(BecasParser.SEMICOLON, 0)
 
         def getRuleIndex(self):
             return BecasParser.RULE_filterInstruction
@@ -333,29 +324,20 @@ class BecasParser ( Parser ):
 
         localctx = BecasParser.FilterInstructionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 6, self.RULE_filterInstruction)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 35
+            self.state = 33
             self.match(BecasParser.FILTER)
-            self.state = 36
+            self.state = 34
             self.match(BecasParser.COLUMN)
-            self.state = 37
+            self.state = 35
             self.match(BecasParser.STRING)
-            self.state = 38
+            self.state = 36
             self.operator()
-            self.state = 39
+            self.state = 37
             self.value()
-            self.state = 43
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if _la==10 or _la==11:
-                self.state = 40
-                self.logicalOperator()
-                self.state = 41
-                self.filterInstruction()
-
-
+            self.state = 38
+            self.match(BecasParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -408,15 +390,15 @@ class BecasParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_aggregateInstruction)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 45
+            self.state = 40
             self.match(BecasParser.AGGREGATE)
-            self.state = 46
+            self.state = 41
             self.aggregateFunc()
-            self.state = 47
+            self.state = 42
             self.match(BecasParser.COLUMN)
-            self.state = 48
+            self.state = 43
             self.match(BecasParser.STRING)
-            self.state = 49
+            self.state = 44
             self.match(BecasParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -460,9 +442,9 @@ class BecasParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_printInstruction)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 51
+            self.state = 46
             self.match(BecasParser.PRINT)
-            self.state = 52
+            self.state = 47
             self.match(BecasParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -519,7 +501,7 @@ class BecasParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 54
+            self.state = 49
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 258048) != 0)):
                 self._errHandler.recoverInline(self)
@@ -569,7 +551,7 @@ class BecasParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 56
+            self.state = 51
             _la = self._input.LA(1)
             if not(_la==18 or _la==19):
                 self._errHandler.recoverInline(self)
@@ -625,59 +607,9 @@ class BecasParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 58
+            self.state = 53
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 480) != 0)):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class LogicalOperatorContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def AND(self):
-            return self.getToken(BecasParser.AND, 0)
-
-        def OR(self):
-            return self.getToken(BecasParser.OR, 0)
-
-        def getRuleIndex(self):
-            return BecasParser.RULE_logicalOperator
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLogicalOperator" ):
-                listener.enterLogicalOperator(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLogicalOperator" ):
-                listener.exitLogicalOperator(self)
-
-
-
-
-    def logicalOperator(self):
-
-        localctx = BecasParser.LogicalOperatorContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_logicalOperator)
-        self._la = 0 # Token type
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 60
-            _la = self._input.LA(1)
-            if not(_la==10 or _la==11):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
