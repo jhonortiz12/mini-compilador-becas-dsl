@@ -44,6 +44,33 @@ class BecasParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by BecasParser#SimpleExpr.
+    def enterSimpleExpr(self, ctx:BecasParser.SimpleExprContext):
+        pass
+
+    # Exit a parse tree produced by BecasParser#SimpleExpr.
+    def exitSimpleExpr(self, ctx:BecasParser.SimpleExprContext):
+        pass
+
+
+    # Enter a parse tree produced by BecasParser#AndExpr.
+    def enterAndExpr(self, ctx:BecasParser.AndExprContext):
+        pass
+
+    # Exit a parse tree produced by BecasParser#AndExpr.
+    def exitAndExpr(self, ctx:BecasParser.AndExprContext):
+        pass
+
+
+    # Enter a parse tree produced by BecasParser#OrExpr.
+    def enterOrExpr(self, ctx:BecasParser.OrExprContext):
+        pass
+
+    # Exit a parse tree produced by BecasParser#OrExpr.
+    def exitOrExpr(self, ctx:BecasParser.OrExprContext):
+        pass
+
+
     # Enter a parse tree produced by BecasParser#aggregateInstruction.
     def enterAggregateInstruction(self, ctx:BecasParser.AggregateInstructionContext):
         pass

@@ -13,7 +13,14 @@ instruction
 
 loadInstruction: LOAD STRING SEMICOLON;
 
-filterInstruction: FILTER COLUMN STRING operator value SEMICOLON;
+// Filtro extendido para permitir expresiones booleanas con AND y OR
+filterInstruction: FILTER filterExpr SEMICOLON;
+
+filterExpr
+    : filterExpr AND filterExpr      # AndExpr
+    | filterExpr OR filterExpr       # OrExpr
+    | COLUMN STRING operator value   # SimpleExpr
+    ;
 
 aggregateInstruction: AGGREGATE aggregateFunc COLUMN STRING SEMICOLON;
 

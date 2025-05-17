@@ -1,80 +1,125 @@
 import sys
+import os
 import pandas as pd
 from antlr4 import *
 from BecasLexer import BecasLexer
 from BecasParser import BecasParser
-from BecasParserListener import BecasParserListener
+from BecasParserVisitor import BecasParserVisitor
+from tree_visualizer import build_visual_tree, save_tree_image
 
-class DSLInterpreter(BecasParserListener):
+
+class DSLVisitor(BecasParserVisitor):
     def __init__(self):
         self.filename = None
         self.filters = []
         self.aggregates = []
         self.data = None
 
-    def enterLoadInstruction(self, ctx):
+    def visitProgram(self, ctx):
+        for instr in ctx.instruction():
+            self.visit(instr)
+
+    def visitLoadInstruction(self, ctx):
         self.filename = ctx.STRING().getText().strip('"')
-        print(f"📂 Cargando archivo CSV: {self.filename}")
+        print(f"📂 Cargando CSV: {self.filename}")
         self.data = pd.read_csv(self.filename)
         print(f"✅ CSV cargado con {len(self.data)} registros")
 
-    def enterFilterInstruction(self, ctx):
-        strings = ctx.getTokens(BecasParser.STRING)
-        column = strings[0].getText().strip('"')
-        value_token = ctx.value().getText()
-        operator = ctx.operator().getText()
-
-        if value_token.replace('.', '', 1).isdigit():
-            value = float(value_token) if '.' in value_token else int(value_token)
-        else:
-            value = f'"{value_token.strip("\"")}"'
-
-        # CORRECTO: sin usar self.data[...] en query
-        condition = f"({column} {operator} {value})"
-        print(f"🔎 Acumulando filtro: {condition}")
+    def visitFilterInstruction(self, ctx):
+        condition = self.visit(ctx.filterExpr())
+        print(f"🔎 Condición compuesta acumulada: {condition}")
         self.filters.append(condition)
 
-    def enterAggregateInstruction(self, ctx):
+    def visitFilterExpr(self, ctx):
+        if ctx.getChildCount() == 3:
+            left = self.visit(ctx.filterExpr(0))
+            op = ctx.getChild(1).getText().upper()
+            right = self.visit(ctx.filterExpr(1))
+            if op == "AND":
+                return f"({left}) & ({right})"
+            elif op == "OR":
+                return f"({left}) | ({right})"
+        else:
+            column = ctx.STRING().getText().strip('"')
+            operator = ctx.operator().getText()
+            value_token = ctx.value().getText()
+
+            if value_token.replace('.', '', 1).isdigit():
+                value = float(value_token) if '.' in value_token else int(value_token)
+            else:
+                value = f'"{value_token.strip("\"")}"'
+
+            return f"({column} {operator} {value})"
+
+    def visitAggregateInstruction(self, ctx):
         func = ctx.aggregateFunc().getText().lower()
         column = ctx.STRING().getText().strip('"')
-        self.aggregates.append((func, column))
         print(f"🧮 Agregación solicitada: {func.upper()} sobre {column}")
+        self.aggregates.append((func, column))
 
-    def enterPrintInstruction(self, ctx):
-        print("🛠️ Ejecutando instrucción PRINT")
+    def visitPrintInstruction(self, ctx):
+        print("\n🛠️ Ejecutando instrucción PRINT")
         df = self.data
 
         if self.filters:
-            condition = " & ".join(self.filters)
-            print(f"🧪 Aplicando filtros: {condition}")
-            df = df.query(condition)
-            print(f"✅ Filtrado: {len(df)} registros encontrados")
+            query_str = " & ".join(self.filters)
+            print(f"🧪 Aplicando filtros: {query_str}")
+            df = df.query(query_str)
+            print(f"📊 Registros que cumplen condición: {len(df)}\n")
+            print(df.head())
 
         for func, col in self.aggregates:
             if func == 'count':
-                print(f"COUNT of {col}: {df[col].count()}")
+                print(f" COUNT of {col}: {df[col].count()}")
             elif func == 'sum':
-                print(f"SUM of {col}: {df[col].sum()}")
+                print(f" SUM of {col}: {df[col].sum()}")
             elif func == 'average':
-                print(f"AVERAGE of {col}: {df[col].mean()}")
+                print(f" AVERAGE of {col}: {df[col].mean()}")
             elif func == 'between':
-                print(f"{col} min: {df[col].min()}, max: {df[col].max()}")
-        print("\n--- Fin del script ---\n")
+                print(f" {col} min: {df[col].min()}, max: {df[col].max()}")
+
+        print("\n✅ Fin del script\n")
+
 
 def run_script(script_path):
-    print(f"▶️ Ejecutando script: {script_path}")
+    print(f"\n▶️ Ejecutando script: {script_path}")
+
+    print("\n📄 Contenido del script:")
+    with open(script_path, "r", encoding="utf-8") as f:
+        print(f.read())
+
     input_stream = FileStream(script_path, encoding='utf-8')
     lexer = BecasLexer(input_stream)
     stream = CommonTokenStream(lexer)
+
+    print("\n🔤 Tokens generados:")
+    stream.fill()
+    for token in stream.tokens:
+        if token.type == -1:
+            continue
+        token_text = token.text.replace("\n", "\\n")
+        token_type = lexer.symbolicNames[token.type]
+        print(f"Línea {token.line}, Col {token.column}: [{token_text}] -> {token_type}")
+
     parser = BecasParser(stream)
     tree = parser.program()
 
-    walker = ParseTreeWalker()
-    interpreter = DSLInterpreter()
-    walker.walk(interpreter, tree)
+    print("\n🌳 Árbol sintáctico (texto con parser.toStringTree()):")
+    print(tree.toStringTree(recog=parser))
+
+    name = os.path.basename(script_path).replace(".dsl", "")
+    os.makedirs("doc", exist_ok=True)
+    visual_tree = build_visual_tree(tree, parser)
+    save_tree_image(visual_tree, f"doc/{name}_tree.png")
+
+    print(f"\n🖼️ Árbol exportado como imagen: doc/{name}_tree.png")
+
+    visitor = DSLVisitor()
+    visitor.visit(tree)
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Uso: python interpreter.py path/al/script.dsl")
+        print("Uso: python interpreter.py scripts/scriptX.dsl")
     else:
         run_script(sys.argv[1])
