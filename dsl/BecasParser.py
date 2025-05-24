@@ -377,7 +377,37 @@ class BecasParser ( Parser ):
             super().copyFrom(ctx)
 
 
-    class SimpleExprContext(FilterExprContext):
+    class OrExprContext(FilterExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a BecasParser.FilterExprContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def filterExpr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(BecasParser.FilterExprContext)
+            else:
+                return self.getTypedRuleContext(BecasParser.FilterExprContext,i)
+
+        def OR(self):
+            return self.getToken(BecasParser.OR, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterOrExpr" ):
+                listener.enterOrExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitOrExpr" ):
+                listener.exitOrExpr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOrExpr" ):
+                return visitor.visitOrExpr(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class BaseExprContext(FilterExprContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a BecasParser.FilterExprContext
             super().__init__(parser)
@@ -395,16 +425,16 @@ class BecasParser ( Parser ):
 
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSimpleExpr" ):
-                listener.enterSimpleExpr(self)
+            if hasattr( listener, "enterBaseExpr" ):
+                listener.enterBaseExpr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSimpleExpr" ):
-                listener.exitSimpleExpr(self)
+            if hasattr( listener, "exitBaseExpr" ):
+                listener.exitBaseExpr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitSimpleExpr" ):
-                return visitor.visitSimpleExpr(self)
+            if hasattr( visitor, "visitBaseExpr" ):
+                return visitor.visitBaseExpr(self)
             else:
                 return visitor.visitChildren(self)
 
@@ -439,36 +469,6 @@ class BecasParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
-    class OrExprContext(FilterExprContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a BecasParser.FilterExprContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def filterExpr(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(BecasParser.FilterExprContext)
-            else:
-                return self.getTypedRuleContext(BecasParser.FilterExprContext,i)
-
-        def OR(self):
-            return self.getToken(BecasParser.OR, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterOrExpr" ):
-                listener.enterOrExpr(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitOrExpr" ):
-                listener.exitOrExpr(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitOrExpr" ):
-                return visitor.visitOrExpr(self)
-            else:
-                return visitor.visitChildren(self)
-
-
 
     def filterExpr(self, _p:int=0):
         _parentctx = self._ctx
@@ -479,7 +479,7 @@ class BecasParser ( Parser ):
         self.enterRecursionRule(localctx, 8, self.RULE_filterExpr, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            localctx = BecasParser.SimpleExprContext(self, localctx)
+            localctx = BecasParser.BaseExprContext(self, localctx)
             self._ctx = localctx
             _prevctx = localctx
 

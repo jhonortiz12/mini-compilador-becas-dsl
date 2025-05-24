@@ -29,18 +29,18 @@ class BecasParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BecasParser#SimpleExpr.
-    def visitSimpleExpr(self, ctx:BecasParser.SimpleExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BecasParser#AndExpr.
-    def visitAndExpr(self, ctx:BecasParser.AndExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BecasParser#OrExpr.
+    # Visit a parse tree produced by BecasParser#orExpr.
     def visitOrExpr(self, ctx:BecasParser.OrExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BecasParser#baseExpr.
+    def visitBaseExpr(self, ctx:BecasParser.BaseExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BecasParser#andExpr.
+    def visitAndExpr(self, ctx:BecasParser.AndExprContext):
         return self.visitChildren(ctx)
 
 

@@ -44,30 +44,30 @@ class BecasParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by BecasParser#SimpleExpr.
-    def enterSimpleExpr(self, ctx:BecasParser.SimpleExprContext):
-        pass
-
-    # Exit a parse tree produced by BecasParser#SimpleExpr.
-    def exitSimpleExpr(self, ctx:BecasParser.SimpleExprContext):
-        pass
-
-
-    # Enter a parse tree produced by BecasParser#AndExpr.
-    def enterAndExpr(self, ctx:BecasParser.AndExprContext):
-        pass
-
-    # Exit a parse tree produced by BecasParser#AndExpr.
-    def exitAndExpr(self, ctx:BecasParser.AndExprContext):
-        pass
-
-
-    # Enter a parse tree produced by BecasParser#OrExpr.
+    # Enter a parse tree produced by BecasParser#orExpr.
     def enterOrExpr(self, ctx:BecasParser.OrExprContext):
         pass
 
-    # Exit a parse tree produced by BecasParser#OrExpr.
+    # Exit a parse tree produced by BecasParser#orExpr.
     def exitOrExpr(self, ctx:BecasParser.OrExprContext):
+        pass
+
+
+    # Enter a parse tree produced by BecasParser#baseExpr.
+    def enterBaseExpr(self, ctx:BecasParser.BaseExprContext):
+        pass
+
+    # Exit a parse tree produced by BecasParser#baseExpr.
+    def exitBaseExpr(self, ctx:BecasParser.BaseExprContext):
+        pass
+
+
+    # Enter a parse tree produced by BecasParser#andExpr.
+    def enterAndExpr(self, ctx:BecasParser.AndExprContext):
+        pass
+
+    # Exit a parse tree produced by BecasParser#andExpr.
+    def exitAndExpr(self, ctx:BecasParser.AndExprContext):
         pass
 
 

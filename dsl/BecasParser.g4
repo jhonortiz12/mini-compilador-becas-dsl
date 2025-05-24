@@ -2,7 +2,7 @@ parser grammar BecasParser;
 
 options { tokenVocab=BecasLexer; }
 
-program: instruction+;
+program: instruction+ ;
 
 instruction
     : loadInstruction
@@ -13,13 +13,12 @@ instruction
 
 loadInstruction: LOAD STRING SEMICOLON;
 
-// Filtro extendido para permitir expresiones booleanas con AND y OR
 filterInstruction: FILTER filterExpr SEMICOLON;
 
 filterExpr
-    : filterExpr AND filterExpr      # AndExpr
-    | filterExpr OR filterExpr       # OrExpr
-    | COLUMN STRING operator value   # SimpleExpr
+    : filterExpr AND filterExpr     # andExpr
+    | filterExpr OR filterExpr      # orExpr
+    | COLUMN STRING operator value  # baseExpr
     ;
 
 aggregateInstruction: AGGREGATE aggregateFunc COLUMN STRING SEMICOLON;
